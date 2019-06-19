@@ -108,7 +108,7 @@ class ViewController: UIViewController {
     
     /*
      添加同步代码块到全局队列,不会开辟新线程
-     在全局队列添加一个任务，因为同步异步，添加后需要等block中的任务执行完才返回，所以是顺序执行
+     在全局队列添加一个任务，因为同步，添加后需要等block中的任务执行完才返回，所以是顺序执行
      */
     func globalSyncTest() {
         print("start")
@@ -137,7 +137,8 @@ class ViewController: UIViewController {
     }
     
     /*
-     串行队列与全局队列的区别是，串行队列的任务只会在一个线程中执行（结果与main一致）
+     串行队列与全局队列的区别是，串行队列的任务只会在一个线程中执行
+    在主线程外新建一个线程，在新建的线程中依次执行任务
      */
     func serialAsyncTest() {
         print("start")
@@ -166,7 +167,8 @@ class ViewController: UIViewController {
     }
     
     /*
-     串行队列与全局队列的区别是，串行队列的任务只会在一个线程中执行（结果与globalSyncTest一致）
+     串行队列与全局队列的区别是，串行队列的任务只会在一个线程中执行
+     在主线程依次执行，不会开启新线程
      */
     func serialSyncTest() {
         print("start")
